@@ -1,0 +1,22 @@
+\chapter{Introduction}
+
+\section{Context and Background Study}
+Leaf diseases reduce crop quality and yield, while visual field scouting is slow and subjective. This work studies expert-annotated field images of bitter gourd, okra, pumpkin and ridge gourd \cite{dataset}. The record contains 4,568 original images from the 2025 growing season in Bangladesh, grouped into nine crop--condition classes. The repository also publishes transformed copies; these must not be randomly separated from their source image during evaluation.
+
+Classical vision pipelines describe a leaf through interpretable colour, texture and geometry measurements. Colour can expose chlorosis and necrosis, texture can capture spotting and mildew, and shape can quantify damaged silhouettes. Such descriptors are compact and inexpensive, but may lose spatial detail. A convolutional neural network (CNN) learns spatial filters directly from pixels \cite{krizhevsky}; it is therefore a useful comparator rather than an assumed winner.
+
+\section{Need Analysis}
+An agricultural decision-support model should be accurate, repeatable and affordable to run. The study therefore compares an RBF support-vector machine (SVM), Random Forest, XGBoost, and a small CNN. Macro-F1 is the primary measure because each disease class should contribute equally despite modest class-count differences.
+
+\section{Identification of Gaps}
+Many leaf-classification reports compare algorithms without isolating the effect of representation. Others evaluate augmented images without grouping derivations of the same original leaf, causing train--test leakage. This project explicitly measures both all handcrafted features and PCA-selected features, fits preprocessing on training data only, and reserves a stratified 15\% original-image test set until final evaluation.
+
+\section{Problem Statement}
+Investigate whether colour, texture and shape descriptors, optionally reduced by principal component analysis (PCA), provide disease-classification performance competitive with a CNN on the nine-class leaf dataset. Competitive performance is pre-registered as a handcrafted macro-F1 within 0.03 of the CNN macro-F1 on the untouched test set.
+
+\section{Objectives}
+\begin{enumerate}
+\item Extract reproducible colour, local-binary-pattern/GLCM texture, and contour-based shape features.
+\item Quantify the effect of PCA retaining 95\% training variance on SVM, Random Forest and XGBoost.
+\item Train a CNN using only train-time augmentation and compare held-out accuracy, macro-F1, balanced accuracy and fit time.
+\end{enumerate}

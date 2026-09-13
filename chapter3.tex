@@ -1,0 +1,39 @@
+\chapter{Outcomes}
+\section{Results \& Analysis}
+The numerical results are intentionally generated rather than hand-entered. After running the supplied pipeline, the following table is included automatically. This safeguards against unsupported performance claims.
+
+\IfFileExists{results/latex_metrics_table.tex}{\input{results/latex_metrics_table.tex}}{\begin{center}\fbox{Run \texttt{src/run\_experiment.py} after downloading the original images to generate results.}\end{center}}
+
+The generated directory also contains normalized per-class confusion matrices and a CNN learning curve. Review false-negative rates for each diseased class, not merely the aggregate score; a high healthy-class recall cannot compensate for missed disease.
+
+\section{Comparative Study}
+PCA is useful when descriptor redundancy hurts an RBF SVM or boosting model, but it can also remove interpretable colour/shape dimensions. The conclusion is based on the best of the three PCA/non-PCA handcrafted rows. It is called competitive only when its test macro-F1 is no more than 0.03 below the CNN. This threshold is a practical study criterion, not a statistical equivalence proof.
+
+\section{Discussions}
+Handcrafted features are attractive for CPU-only deployment, inspection and small datasets. A CNN can exploit spatial arrangement of lesions that histograms and global contour descriptors discard. Conversely, field backgrounds, illumination and imperfect segmentation may affect both approaches. Future experiments should use image-group identifiers or acquisition dates for grouped cross-validation and external field validation.
+
+\section{Project Cost Estimation}
+\begin{table}[ht]
+\centering
+\caption{Indicative project execution cost}
+\begin{tabular}{|c|p{2.5cm}|p{4.5cm}|c|c|c|}\hline
+\textbf{No} & \textbf{Category} & \textbf{Description} & \textbf{Unit Cost (\rupee)} & \textbf{Qty} & \textbf{Cost}\\\hline
+1 & Data & CC BY dataset download & 0 & 1 & 0\\
+2 & Software & Python and open-source libraries & 0 & 1 & 0\\
+3 & Compute & Local CPU training electricity estimate & 20 & 1 & 20\\
+4 & Documentation & Printing/binding estimate & 300 & 1 & 300\\\hline
+\multicolumn{5}{|l|}{\textbf{Total Cost}} & 320\\\hline
+\end{tabular}\label{tab:executioncost}
+\end{table}
+
+\section{Project Impact}
+Fast, consistent screening can help direct scouting attention towards symptomatic plants. The system is advisory: agronomists should confirm treatment decisions, particularly where symptoms overlap or images have poor quality.
+\subsection{Environmental Impact} Earlier, targeted identification can reduce unnecessary broad pesticide application; this claim requires field trials before quantification.
+\subsection{Societal Impact} An offline-capable classifier can make preliminary disease screening more accessible to growers and extension workers.
+\subsection{Economical Impact} Interpretable CPU models offer a low-cost option when cloud connectivity or GPU hardware is unavailable.
+\section{SDG Compliance}
+The work supports SDG 2 (Zero Hunger) through crop-health decision support and SDG 12 (Responsible Consumption and Production) through the potential for more targeted interventions.
+\section{Conclusions}
+This project supplies a controlled, reproducible test of representation choice instead of presuming deep learning superiority. The final empirical conclusion is written by the generated results: handcrafted descriptors are competitive only if their best held-out macro-F1 is within three percentage points of the CNN. This condition protects the report from claiming results before the source images are executed.
+\section{Scope for Future Work}
+Add robust leaf segmentation, grouped cross-validation using original/augmentation provenance, calibration and uncertainty estimates, mobile latency testing, and external validation across seasons and locations.

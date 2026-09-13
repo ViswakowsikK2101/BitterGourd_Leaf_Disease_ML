@@ -1,0 +1,22 @@
+\chapter{Execution}
+\section{Graphical Abstract}
+\begin{center}
+\begin{tikzpicture}[node distance=9mm, every node/.style={draw,rounded corners,align=center,minimum height=8mm,fill=lightblue}]
+\node (a) {Original field images\\(nine classes)};
+\node (b) [below=of a] {Stratified 70/15/15\\train/validation/test split};
+\node (c) [below left=of b,xshift=-16mm] {Colour + texture + shape\\$\rightarrow$ all / PCA features};
+\node (d) [below right=of b,xshift=16mm] {224$\times$224 pixels\\$\rightarrow$ compact CNN};
+\node (e) [below=of b,yshift=-32mm] {Held-out macro-F1, accuracy,\\balanced accuracy, confusion matrices};
+\draw[->,thick] (a)--(b); \draw[->,thick] (b)--(c); \draw[->,thick] (b)--(d); \draw[->,thick] (c)--(e); \draw[->,thick] (d)--(e);
+\end{tikzpicture}
+\end{center}
+\section{Methodology for the Study}
+The data manifest is constructed recursively and assigns one of nine labels from crop and condition names in the folder path. Paths containing ``augmented'' are excluded by default. A fixed random seed (42) produces a stratified 70/15/15 split. The validation partition selects the CNN epoch; no test label guides preprocessing, PCA dimension, hyperparameters, or early stopping.
+
+Each 256$\times$256 image supplies RGB/HSV moments and 16-bin histograms; LBP histogram and four-direction GLCM contrast, dissimilarity, homogeneity, energy and correlation; and a saturation-segmented largest-contour area, perimeter, compactness, solidity, extent, aspect ratio and Hu moments. PCA is fitted after standardization of the training descriptors only and retains 95\% variance \cite{jolliffe}.
+\section{Modeling, Analysis \& Design}
+The SVM uses an RBF kernel and balanced class weights \cite{cortes}. Random Forest uses 400 class-balanced trees \cite{breiman}. XGBoost uses 350 shallow boosted trees \cite{chen}. The CNN has three convolution--batch-normalization--ReLU blocks, global average pooling, dropout and a nine-way softmax. Only its training loader performs horizontal flips and $\pm15^{\circ}$ rotations.
+\section{Algorithms and Flowcharts}
+For every traditional model, the experiment fits two pipelines: standardization plus classifier, and standardization plus PCA plus classifier. It serializes pipelines, confusion matrices, feature matrix, data manifest, timing and a LaTeX result table. This makes the comparison auditable and rerunnable from one command.
+\section{Prototype \& Testing}
+Run \texttt{python src/run\_experiment.py --data-root <original-images>} from the project directory. A smoke test can use \texttt{--max-per-class 30 --epochs 3}; final values must be regenerated using all original images and 25--40 epochs. Unreadable files fail loudly rather than silently changing the cohort.

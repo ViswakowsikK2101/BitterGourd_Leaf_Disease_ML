@@ -1,0 +1,123 @@
+Itemize:
+--------
+\begin{itemize}
+	\item {\LaTeX} is highly portable and free.
+	\begin{itemize}
+		\item Contribute to TUG
+		\item Promote Free Softwares
+	\end{itemize}
+	\item Operating-system independent.
+	\item Complex scientific documents can be created
+	automatically.
+	\item High quality math typesetting.
+\end{itemize}
+
+
+
+Enumeration:
+------------
+\begin{enumerate}
+	\item TeXLive TeX System
+	\begin{enumerate}
+		\item TeXLive for Windows
+		\begin{enumerate}
+			\item TeXLive
+			\item ProTex
+		\end{enumerate}
+		\item MacTeX for Mac
+	\end{enumerate}
+	\item MikTeX TeX System
+\end{enumerate}
+
+
+Equation without Numbering:
+--------------------------
+\begin{equation*}
+	x = \frac{{ - b \pm \sqrt {{b^2} - 4ac} }}{{2a}}\
+\end{equation*}
+
+
+Equation with Numbering:
+------------------------
+\begin{equation} \label{Eq:eq123}
+\dot X = \left[ {\begin{array}{*{20}{c}}
+	1 & p  \\
+	2 & \alpha   \\
+	\end{array}} \right]\left[ {\begin{array}{*{20}{c}}
+	{{x_1}}  \\
+	{{x_2}}  \\
+	\end{array}} \right] + Bu\
+\end{equation}
+
+
+Inline Equation:
+----------------
+This is my equation.
+$	f = ma \pm \alpha \Delta \left[ {\begin{array}{*{20}{c}}
+	1 & \chi   \\
+	{ - 1} & 0  \\
+	\end{array}} \right] $
+,which is appearing in between some text.
+
+
+EPS Figure:
+-----------
+\begin{figure}[htbp]
+	\begin{center}
+		\includegraphics[scale=0.5]{Figures/manualtrip.eps}
+		\caption{Flowchart of Manual Controller}
+		\label{fig:fcmc1}
+	\end{center}
+\end{figure}
+
+Pixel Figure:
+-----------
+\begin{figure}[htbp]
+	\begin{center}
+		\includegraphics[scale=0.3]{Figures/relay.jpg}
+		\caption{Relay Board}
+		\label{fig:rb}
+	\end{center}
+\end{figure}
+
+
+Table:
+------
+\begin{table}[htbp]
+	\centering
+	\caption{Student Marks}
+	\begin{tabular}{|r|r|}
+		\hline
+		Name  & Marks \\
+		\hline
+		Ajay  & 10 \\
+		Vinay & 20 \\
+		\hline
+	\end{tabular}%
+	\label{tab:sm}%
+\end{table}%
+
+
+References:
+-----------
+Citation, Index, Reference and Equation reference \\
+This is the methodology for the entire project work which includes even the process of deciding on the project title, objectives
+\index{Ojectives}, etc. This is mandatory for MTech and optional for BTech)\cite{abcdef}. The data is shown in Table \ref{tab:sm}. The equation shown in Equation \eqref{Eq:eq123}
+
+
+
+Verbatim Text:
+---------------
+\begin{verbatim}
+CREATE TABLE `controller_config` (
+`load_id` int(11) NOT NULL,
+`ct_constant` double DEFAULT NULL,
+`pt_constant` double DEFAULT NULL,
+`samples` int(11) DEFAULT NULL,
+`delay` double DEFAULT NULL,
+PRIMARY KEY (`load_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+SELECT * FROM loadcontroller.load_details;
+\end{verbatim} 
+
+

@@ -1,0 +1,22 @@
+# Dataset and generated experiment artifacts
+data/
+results/
+models/
+*.pt
+*.joblib
+*.npz
+
+# Python cache and local environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.pdf

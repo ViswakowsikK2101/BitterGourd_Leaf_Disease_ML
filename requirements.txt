@@ -1,0 +1,8 @@
+numpy>=2.0
+pandas>=2.0
+opencv-python>=4.8
+scikit-learn>=1.5
+xgboost>=3.4
+torch>=2.0
+matplotlib>=3.8
+joblib>=1.3
