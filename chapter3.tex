@@ -4,7 +4,17 @@ The numerical results are intentionally generated rather than hand-entered. Afte
 
 \IfFileExists{results/latex_metrics_table.tex}{\input{results/latex_metrics_table.tex}}{\begin{center}\fbox{Run \texttt{src/run\_experiment.py} after downloading the original images to generate results.}\end{center}}
 
-The generated directory also contains normalized per-class confusion matrices and a CNN learning curve. Review false-negative rates for each diseased class, not merely the aggregate score; a high healthy-class recall cannot compensate for missed disease.
+The generated directory also contains normalized per-class confusion matrices, a CNN learning curve, a score-comparison figure and a training-time figure. Review false-negative rates for each diseased class, not merely the aggregate score; a high healthy-class recall cannot compensate for missed disease.
+
+\begin{figure}[htbp]\centering
+\IfFileExists{results/model_comparison.png}{\includegraphics[width=.95\textwidth]{results/model_comparison.png}}{\fbox{Generated model-comparison screenshot will appear here.}}
+\caption{Accuracy, precision, recall, macro-F1 and macro ROC-AUC across the benchmark models.}\label{fig:modelcomparison}
+\end{figure}
+
+\begin{figure}[htbp]\centering
+\IfFileExists{results/training_time.png}{\includegraphics[width=.85\textwidth]{results/training_time.png}}{\fbox{Generated training-time screenshot will appear here.}}
+\caption{Training-time comparison on the same training split.}\label{fig:trainingtime}
+\end{figure}
 
 \section{Comparative Study}
 PCA is useful when descriptor redundancy hurts an RBF SVM or boosting model, but it can also remove interpretable colour/shape dimensions. The conclusion is based on the best of the three PCA/non-PCA handcrafted rows. It is called competitive only when its test macro-F1 is no more than 0.03 below the CNN. This threshold is a practical study criterion, not a statistical equivalence proof.

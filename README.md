@@ -45,7 +45,7 @@ The Mendeley record also contains augmented copies. Download the archive, extrac
 | Texture descriptors | Local Binary Pattern histogram; four-direction GLCM statistics |
 | Shape descriptors | Saturation-based mask, largest contour, compactness, solidity, aspect ratio, Hu moments |
 | Feature selection | Training-only standardization followed by PCA retaining 95% variance |
-| Classical models | RBF SVM, class-balanced Random Forest, XGBoost |
+| Classical models | Linear, polynomial, and RBF SVMs; class-balanced Random Forest; XGBoost |
 | Deep baseline | Three-block PyTorch CNN with batch normalization, dropout, and train-only flips/rotations |
 | Evaluation | Stratified 70/15/15 train/validation/test split, seed 42; accuracy, macro-F1, balanced accuracy |
 
@@ -89,7 +89,9 @@ results/
 ├── handcrafted_features.npz       # Extracted descriptor matrix
 ├── cm_*.png                       # Normalized confusion matrices
 ├── cnn_history.csv
-└── cnn_learning_curve.png
+├── cnn_learning_curve.png
+├── model_comparison.png          # Accuracy, precision, recall, F1 and ROC-AUC
+└── training_time.png              # Fit-time comparison
 
 models/
 ├── SVM_*.joblib
